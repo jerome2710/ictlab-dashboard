@@ -1,9 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="content-wrapper">
-	<h1 class="page-title">Kies een nieuw wachtwoord</h1>
-</div>
 <section class="card">
+	<h1 class="page-title">Kies een nieuw wachtwoord</h1>
 	<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="default-form clearfix js-validate-form">
 		{% if form_errors(form) %}
 			<div class="notification">

@@ -1,30 +1,31 @@
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <li class="sidebar-brand">
-            <a href="#">
-                Start Bootstrap
-            </a>
-        </li>
-        <li>
-            <a href="#">Dashboard</a>
-        </li>
-        <li>
-            <a href="#">Shortcuts</a>
-        </li>
-        <li>
-            <a href="#">Overview</a>
-        </li>
-        <li>
-            <a href="#">Events</a>
-        </li>
-        <li>
-            <a href="#">About</a>
-        </li>
-        <li>
-            <a href="#">Services</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
-    </ul>
-</div>
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	<div id="sidebar-toggle">
+		<button class="menu-button js-toggle-menu">
+			<svg width="26" height="19" class="menu-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('assets/svg/src/menu-icon.svg') }}"></use></svg>
+		</button>
+	</div>
+	<div id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<li class="sidebar-brand">
+				<a href="#">
+					CHIBB
+				</a>
+			</li>
+			<li>
+				<a href="{{ path('dashboard') }}">Dashboard</a>
+			</li>
+			<li>
+				<a href="#">Sensors</a>
+			</li>
+			<li>
+				<a href="#">History</a>
+			</li>
+			<li>
+				<a href="#">Profile</a>
+			</li>
+			<li>
+				<a href="{{ path('fos_user_logout') }}">Logout</a>
+			</li>
+		</ul>
+	</div>
+{% endif %}

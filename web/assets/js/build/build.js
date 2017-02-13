@@ -3226,7 +3226,7 @@ window.Parsley.addValidator('fileSizeMax', {
 		 * Toggle the sidebar menu
          */
 		toggleMenu: function () {
-			$("#wrapper").toggleClass('toggled');
+			$("#wrapper").toggleClass('show');
 		}
 	};
 

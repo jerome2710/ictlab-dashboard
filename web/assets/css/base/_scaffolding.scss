@@ -1,0 +1,91 @@
+/**
+ * @section : Scaffolding
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+html {
+	font-size: 100%;
+	background-color: $color-rhino;
+	min-height: 100%;
+	height: 100%;
+}
+
+body {
+	font-size: $f-size;
+	font-family: $f-font-family;
+	line-height: 1.333;
+	height: 100%;
+	color: $color-text;
+	background-color: $color-rhino;
+}
+
+::-moz-selection {
+	background: $color-frog;
+	color: $color-panther;
+	text-shadow: none;
+}
+
+::selection {
+	background: $color-frog;
+	color: $color-panther;
+	text-shadow: none;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: $f-font-family-heading;
+	font-weight: 800;
+}
+
+h1,
+.h1 {
+	font-size: 22px;
+	color: $color-panther;
+
+	@include media($bp-md) {
+		font-size: 26px;
+	}
+}
+
+h2,
+.h2 {
+	font-size: 18px;
+	color: $color-panther;
+
+	@include media($bp-md) {
+		font-size: 22px;
+	}
+}
+
+h3,
+.h3 {
+	font-size: 16px;
+	color: $color-panther;
+
+	@include media($bp-md) {
+		font-size: 18px;
+	}
+}
+
+h4,
+.h4 {
+	font-size: 20px;
+	color: $color-panther;
+}
+
+ul, ol {
+	margin: 1em 0;
+	padding: 0 0 0 40px;
+}
+
+img {
+	-ms-interpolation-mode: bicubic;
+	vertical-align: middle;
+	display: block;
+}
+
+video {
+	position: relative;
+	z-index: 5;
+}

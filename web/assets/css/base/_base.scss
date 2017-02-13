@@ -1,0 +1,42 @@
+/**
+ * @section : Base CSS styles (extends normalize.less)
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+a {
+	color: $color-text;
+	text-decoration: underline;
+
+	&.notification {
+		@include action-anchor();
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+}
+
+p {
+	margin-top: 0;
+}
+
+.content-centered {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 100%;
+	min-height: calc(100% - 120px);
+
+	&.login-page {
+		min-height: calc(100% - 60px);
+	}
+
+	> .container {
+		padding-top: 30px;
+		padding-bottom: 30px;
+		width: 100%;
+		max-width: 600px;
+	}
+}

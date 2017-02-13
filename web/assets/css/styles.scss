@@ -1,19 +1,32 @@
 /**
- * @section : Styles CSS
+ * @section : Styles css
  * @project : ICT Lab Dashboard
  * @author  : Jerome Anker <0864155@hr.nl>
  */
 
 /*------------------------------------*\
-   BASE
-\*------------------------------------*/
-@import "base/_sidebar.scss";
-
-/*------------------------------------*\
    VENDOR
 \*------------------------------------*/
 @import "vendor/bootstrap";
+@import "vendor/bourbon/bourbon";
+@import "vendor/neat/neat";
+
+/*------------------------------------*\
+   BASE
+\*------------------------------------*/
+@import "base/variables";
+@import "base/css-reset-and-normalize";
+@import "base/mixins";
+@import "base/base";
+@import "base/scaffolding";
+@import "base/helpers";
+@import "base/buttons";
+@import "base/sidebar";
 
 /*------------------------------------*\
    COMPONENTS
 \*------------------------------------*/
+@import "components/login-page";
+@import "components/form";
+@import "components/card";
+@import "components/alert";

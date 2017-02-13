@@ -1,0 +1,119 @@
+/**
+ * @section : Card element
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+.cards-wrapper {
+	clear: both;
+
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	@media screen and (min-width: $bp-lg) {
+		padding: 0;
+	}
+}
+
+.card {
+	position: relative;
+	background: white;
+	box-shadow: inset 1px 1px $color-mouse, inset -1px -1px $color-mouse;
+	padding: 20px;
+
+	+ .card {
+		margin-top: 20px;
+
+		&--notification {
+			margin-top: 10px;
+		}
+	}
+
+	// Add shadow
+	@include card-shadow();
+
+	&--highlight {
+		box-shadow: inset 2px 2px $color-dolphin, inset -2px -2px $color-dolphin;
+	}
+
+	&--has-realized-amount {
+		padding-bottom: 120px;
+
+		@media screen and (min-width: $bp-lg) {
+			padding-bottom: 120px;
+		}
+
+		.realized-amount {
+			position: absolute;
+			bottom: 20px;
+			width: calc(100% - 40px);
+		}
+	}
+
+	&--clear {
+		background: none;
+		box-shadow: none;
+
+		.cssfilters & {
+
+			&:before,
+			&:after {
+				display: none;
+			}
+		}
+	}
+
+	&__title {
+		font-size: 16px;
+		margin: 0;
+		padding: 0;
+		display: inline;
+
+		@media screen and (min-width: $bp-md) {
+			font-size: 22px;
+		}
+	}
+
+	&__title + &__form {
+		margin-top: 15px;
+	}
+
+	&--media {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	&--notification {
+		margin-left: 60px;
+		padding-top: 10px;
+		padding-bottom: 20px;
+		padding-left: 10px;
+	}
+
+	&--project {
+		p {
+			margin-top: 1em;
+			margin-bottom: 1em;
+			line-height: 1.5;
+		}
+
+		.card__title {
+			font-family: $f-font-family-heading;
+			color: $color-panther;
+		}
+	}
+
+	&--company {
+		@media screen and (min-width: $bp-lg) {
+			@include span-columns(4 of 8);
+			@include omega(2n);
+
+			&:nth-child(2) { // only the second card can't have margin-top
+				margin-top: 0;
+			}
+		}
+	}
+}

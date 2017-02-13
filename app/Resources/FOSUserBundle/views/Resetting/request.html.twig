@@ -3,10 +3,8 @@
 {% set page_title = 'Wachtwoord opnieuw instellen' %}
 
 {% block fos_user_content %}
-	<div class="content-wrapper">
-		<h1 class="page-title">{{ page_title }}</h1>
-	</div>
 	<section class="card">
+		<h1 class="page-title">{{ page_title }}</h1>
 		{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
 	</section>
 {% endblock fos_user_content %}

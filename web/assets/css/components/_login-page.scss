@@ -1,0 +1,15 @@
+/**
+ * @section : Login page
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+#wrapper {
+	padding-left: 0;
+}
+
+.login-page {
+	.page-title {
+		@extend .text-center;
+	}
+}
