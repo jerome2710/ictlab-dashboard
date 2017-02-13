@@ -1,0 +1,25 @@
+{
+	"dependencies": {
+		"del": "^2.2.0",
+		"gulp-concat": "^2.6.0",
+		"gulp-group-files": "^2.0.0",
+		"gulp-rev": "^7.0.0",
+		"gulp-uglify": "^1.5.2"
+	},
+	"conf": {
+		"jsGroups": {
+			"build": [
+				"web/assets/js/vendor/jquery/jquery-3.1.1.min.js",
+				"web/assets/js/vendor/jquery/plugins.js",
+				"web/assets/js/vendor/jquery/jquery.matchHeight.js",
+			  	"web/assets/js/vendor/countUp.js",
+				"web/assets/js/vendor/parsley.config.js",
+				"web/assets/js/vendor/parsley.min.js",
+				"web/assets/js/vendor/parsley.validators.js",
+				"web/assets/js/vendor/modernizr.js",
+				"web/assets/js/misc/functions.js",
+				"web/assets/js/misc/events.js"
+			]
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{
+    "hosts": [
+        "ictlab-dashboard.ebox"
+    ],
+    "webroot": "web/",
+    "database": {
+        "name": ["hro_ictlab-dashboard"],
+        "user": "hro_ictlab-dashb",
+        "password": "hro_ictlab-dashboard"
+    }
+}

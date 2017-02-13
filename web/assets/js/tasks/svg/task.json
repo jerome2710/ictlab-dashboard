@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"del": "^2.2.0",
+		"gulp-rename": "^1.2.2",
+		"gulp-svgstore": "^5.0.5"
+	}
+}

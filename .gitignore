@@ -1,3 +1,7 @@
+# Globals
+.idea
+node_modules/*
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -41,7 +45,7 @@
 # Build data
 /build/
 
-# Composer PHAR
+# Composer
 /composer.phar
 
 # Backup entities generated with doctrine:generate:entities command

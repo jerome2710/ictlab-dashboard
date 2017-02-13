@@ -1,0 +1,35 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="content-wrapper">
+	<h1 class="page-title">Kies een nieuw wachtwoord</h1>
+</div>
+<section class="card">
+	<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="default-form clearfix js-validate-form">
+		{% if form_errors(form) %}
+			<div class="notification">
+				<h3 class="notification__title">Oeps</h3>
+				<p class="notification__message">{{ form_errors(form) }}</p>
+			</div>
+		{% endif %}
+
+		<div class="form-group">
+			<label for="fos_user_resetting_form_new_first">Nieuw wachtwoord</label>
+			{{ form_widget(form.new.first, {'attr': {'class': 'js-passwordstrength'} }) }}
+		</div>
+		<div class="form-group">
+			<label for="fos_user_resetting_form_new_second">Bevestig nieuw wachtwoord</label>
+			{{ form_widget(form.new.second, {'attr': {'data-parsley-equalto': '#fos_user_resetting_form_new_first'}}) }}
+		</div>
+		<div class="form-group">
+			<div class="password-strength">
+				<div class="password-strength__message"></div>
+				<div class="password-strength__color">
+					<div class="password-strength__color-fill"></div>
+				</div>
+			</div>
+		</div>
+		{{ form_widget(form._token) }}
+		<button type="submit" class="button button--primary pull-right">{{ 'resetting.reset.submit'|trans }}</button>
+		<a href="{{ path("fos_user_security_login") }}" class="button button--ghost pull-right">Terug naar inloggen</a>
+	</form>
+</section>
