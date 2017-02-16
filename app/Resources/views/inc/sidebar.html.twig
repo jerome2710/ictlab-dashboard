@@ -1,7 +1,9 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 	<div id="sidebar-toggle">
-		<button class="menu-button js-toggle-menu">
-			<svg width="26" height="19" class="menu-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('assets/svg/src/menu-icon.svg') }}"></use></svg>
+		<button class="menu-button js-menu-toggle">
+			<svg width="26" height="19" class="menu-icon">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('assets/svg/src/menu-icon.svg') }}"></use>
+			</svg>
 		</button>
 	</div>
 	<div id="sidebar-wrapper">

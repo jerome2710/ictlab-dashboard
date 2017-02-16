@@ -1,0 +1,45 @@
+/**
+ * @section : Home
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+.home {
+	padding-left: 0;
+	padding-right: 0;
+	height: 100%;
+
+	&--header, &--location {
+		margin-left: 0;
+		margin-right: 0;
+		padding: 0 10px;
+	}
+
+	&--header {
+		border-bottom: 1px solid $color-seal;
+
+		&-title {
+			color: $color-wolf;
+		}
+	}
+
+	&--location {
+		&-name {
+			color: $color-wolf;
+		}
+	}
+
+	&--ground {
+		-webkit-box-direction: normal;
+		-webkit-box-flex: 1;
+		-webkit-user-select: none;
+		background-color: $color-frog;
+		box-sizing: border-box;
+		display: block;
+		font-family: sans-serif;
+		position: fixed;
+		bottom: 0;
+		height: 100px;
+		width: 100%;
+	}
+}

@@ -49,9 +49,10 @@ body {
 }
 
 #page-content-wrapper {
+	height: 100%;
 	width: 100%;
 	position: absolute;
-	padding: 15px 15px 15px 50px;
+	padding-left: 50px;
 }
 
 #wrapper.show #page-content-wrapper {
@@ -116,9 +117,9 @@ body {
 	display: inline-block;
 	float: right;
 
-	@media screen and (min-width: $bp-lg) {
-		display: none;
-	}
+	//@media screen and (min-width: $bp-lg) {
+	//	display: none;
+	//}
 
 	svg {
 		@include transition(.2s);
