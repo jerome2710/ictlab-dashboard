@@ -18,3 +18,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:             ThisTokenIsNotSoSecretChangeIt
+
+    # CHIBB API
+    chibb_api_username: ~
+    chibb_api_password: ~

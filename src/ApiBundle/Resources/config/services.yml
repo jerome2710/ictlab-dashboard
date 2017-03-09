@@ -1,0 +1,10 @@
+services:
+    api.service:
+        class: ApiBundle\Service\ApiService
+        arguments: ['%chibb_api_username%', '%chibb_api_password%']
+
+    api.command.fetch_sensors_command_handler:
+        class: ApiBundle\Domain\Messaging\Command\FetchSensorsCommandHandler
+        arguments: ['@api.service', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: command_handler, handles: ApiBundle\Domain\Messaging\Command\FetchSensorsCommand }

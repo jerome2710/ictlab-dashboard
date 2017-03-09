@@ -17,4 +17,15 @@ class DefaultController extends Controller
 	{
 		return $this->render('AppBundle:Default:dashboard.html.twig');
 	}
+
+	/**
+	 * @Route("/sandbox/", name="dashboard")
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function sandboxAction(Request $request)
+	{
+		dump($this->get('api.service')->getSensors());
+		die();
+	}
 }
