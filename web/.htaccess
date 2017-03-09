@@ -1,7 +1,7 @@
 # Force HTTPS
 RewriteEngine On
 RewriteCond %{SERVER_PORT} 80
-RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule .? https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Use the front controller as index file. It serves as a fallback solution when
 # every other rewrite/redirect fails (e.g. in an aliased environment without
