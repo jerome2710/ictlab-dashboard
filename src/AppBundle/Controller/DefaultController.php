@@ -18,6 +18,8 @@ class DefaultController extends Controller
 		return $this->render('AppBundle:Default:dashboard.html.twig');
 	}
 
+
+
 	/**
 	 * @Route("/sandbox/", name="dashboard")
 	 * @param Request $request
@@ -25,7 +27,6 @@ class DefaultController extends Controller
 	 */
 	public function sandboxAction(Request $request)
 	{
-		dump($this->get('api.service')->getSensors());
 		die();
 	}
 }

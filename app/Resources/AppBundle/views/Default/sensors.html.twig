@@ -1,0 +1,21 @@
+{% extends ':layouts:base.html.twig' %}
+
+{% set page_title = 'Sensors' %}
+
+{% block body %}
+	<div id="page-content-wrapper">
+		<div class="container-fluid settings">
+
+			{{ form_start(form) }}
+
+			{% for sensor in form.sensors %}
+				{{ form_widget(sensor.uuid) }}
+				{{ form_widget(sensor.location) }}
+				{{ form_widget(sensor.battery) }}
+			{% endfor %}
+
+			{{ form_end(form) }}
+
+		</div>
+	</div>
+{% endblock %}
