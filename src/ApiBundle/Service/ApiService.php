@@ -9,7 +9,7 @@ class ApiService
 {
 	const API_URL = 'https://api.chibb-box.nl';
 	const API_ENDPOINT_AUTHENTICATE = '/authenticate';
-	const API_ENDPOINT_SENSORS_LIST = '/sensors/list';
+	const API_ENDPOINT_SENSORS_LIST = '/sensors';
 
 	/** @var string $apiUsername */
 	private $apiUsername;
