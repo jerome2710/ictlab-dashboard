@@ -21,7 +21,7 @@ class DefaultController extends Controller
 
 
 	/**
-	 * @Route("/sandbox/", name="dashboard")
+	 * @Route("/sandbox/", name="sandbox")
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */

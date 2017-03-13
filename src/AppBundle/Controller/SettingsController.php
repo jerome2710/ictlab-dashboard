@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SettingsController extends Controller
 {
 	/**
-	 * @Route("/sensors", name="dashboard")
+	 * @Route("/sensors", name="settings_sensors")
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
