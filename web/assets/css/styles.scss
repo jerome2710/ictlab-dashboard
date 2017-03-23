@@ -9,6 +9,7 @@
 \*------------------------------------*/
 @import "vendor/bootstrap";
 @import "vendor/bourbon/bourbon";
+@import "vendor/font-awesome";
 @import "vendor/neat/neat";
 
 /*------------------------------------*\
@@ -32,3 +33,4 @@
 @import "components/alert";
 
 @import "components/home";
+@import "components/settings";

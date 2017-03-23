@@ -22,7 +22,8 @@ $color-text:                #494949;
     TYPOGRAPHY
 \*------------------------------------*/
 $f-font-family-path:		'/assets/fonts/';
-$f-font-family:				'Raleway', Helvetica, Verdana, Arial, sans-serif;
+$fa-font-path:				$f-font-family-path;
+$f-font-family:				'Roboto', Helvetica, Verdana, Arial, sans-serif;
 $f-font-family-heading:		$f-font-family;
 $f-size:					15px;
 

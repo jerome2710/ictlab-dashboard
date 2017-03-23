@@ -23,7 +23,7 @@
 		<link rel="dns-prefetch" href="//google-analytics.com">
 
 		{% include 'inc/favicons.html.twig' only %}
-		<link href="//fonts.googleapis.com/css?family=Raleway:400,500,700,800,900" rel="stylesheet">
+		<link href="//fonts.googleapis.com/css?family=Roboto:400,500,700,800,900" rel="stylesheet">
 
 		{% block stylesheets %}
 			{% if app.environment != 'dev' %}
@@ -42,12 +42,22 @@
 
 		{% include 'inc/messages.html.twig' %}
 
-		{% block body %}{% endblock %}
+		<div id="page-content-wrapper">
+			<div class="container-fluid {{ page_class|default('default') }}">
+				<div class="row header">
+					<div class="col-lg-12">
+						<h1 class="title">CHIBB - {{ page_title|default('') }}</h1>
+					</div>
+				</div>
+				{% block body %}{% endblock %}
+			</div>
+		</div>
 
 		{% include 'inc/footer.html.twig' %}
 
 		{% block javascripts %}
 			<script src="/assets/js/build/build.js"></script>
+			<script type="text/javascript">svg4everybody();</script>
 		{% endblock %}
 	</body>
 </html>

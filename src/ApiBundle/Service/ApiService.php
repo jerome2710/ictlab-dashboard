@@ -11,6 +11,9 @@ class ApiService
 	const API_ENDPOINT_AUTHENTICATE = '/authenticate';
 	const API_ENDPOINT_SENSORS_LIST = '/sensors';
 
+	/** @var string $apiLocation */
+	private $apiLocation;
+
 	/** @var string $apiUsername */
 	private $apiUsername;
 
@@ -23,11 +26,13 @@ class ApiService
 	/**
 	 * ApiService constructor.
 	 *
+	 * @param $apiLocation
 	 * @param $apiUsername
 	 * @param $apiPassword
 	 */
-	public function __construct($apiUsername, $apiPassword)
+	public function __construct($apiLocation, $apiUsername, $apiPassword)
 	{
+		$this->apiLocation = $apiLocation;
 		$this->apiUsername = $apiUsername;
 		$this->apiPassword = $apiPassword;
 	}

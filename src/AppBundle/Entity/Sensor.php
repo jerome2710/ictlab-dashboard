@@ -35,6 +35,14 @@ class Sensor
      */
     private $location;
 
+	/**
+	 * @var Position
+	 *
+	 * @ORM\OneToOne(targetEntity="AppBundle\Entity\Position", inversedBy="sensor")
+	 * @ORM\JoinColumn(name="position_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+	 */
+    private $position;
+
     /**
      * @var float
      *
@@ -48,6 +56,11 @@ class Sensor
 	 * @ORM\Column(name="datetime", type="datetime")
 	 */
     private $datetime;
+
+	/**
+	 * @var boolean
+	 */
+    private $scheduleDeletion;
 
     /**
      * Get id
@@ -142,5 +155,37 @@ class Sensor
 	public function setDatetime($datetime)
 	{
 		$this->datetime = $datetime;
+	}
+
+	/**
+	 * @return Position
+	 */
+	public function getPosition()
+	{
+		return $this->position;
+	}
+
+	/**
+	 * @param Position $position
+	 */
+	public function setPosition($position)
+	{
+		$this->position = $position;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isScheduleDeletion()
+	{
+		return $this->scheduleDeletion;
+	}
+
+	/**
+	 * @param bool $scheduleDeletion
+	 */
+	public function setScheduleDeletion($scheduleDeletion)
+	{
+		$this->scheduleDeletion = $scheduleDeletion;
 	}
 }

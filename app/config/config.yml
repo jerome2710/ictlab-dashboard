@@ -40,6 +40,8 @@ twig:
     form:
         resources:
             - 'form_div_layout.html.twig'
+    form_themes:
+        - 'bootstrap_3_layout.html.twig' #Overwrite the default form widgets
 
 # Doctrine Configuration
 doctrine:

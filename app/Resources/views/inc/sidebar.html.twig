@@ -1,26 +1,30 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 	<div id="sidebar-toggle">
 		<button class="menu-button js-menu-toggle">
-			<svg width="26" height="19" class="menu-icon">
-				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('assets/svg/src/menu-icon.svg') }}"></use>
-			</svg>
+			<i class="fa fa-bars" aria-hidden="true"></i>
 		</button>
 	</div>
+
 	<div id="sidebar-wrapper">
+		<div class="sidebar-header">
+			<button class="menu-button js-menu-toggle">
+				<i class="fa fa-bars" aria-hidden="true"></i>
+			</button>
+			<a href="../" class="navbar-brand">CHIBB</a>
+		</div>
+
 		<ul class="sidebar-nav">
-			<li class="sidebar-brand">
-				<a href="#">
-					CHIBB
-				</a>
-			</li>
 			<li>
 				<a href="{{ path('dashboard') }}">Dashboard</a>
 			</li>
 			<li>
-				<a href="#">Sensors</a>
+				<a href="#">Statistics</a>
 			</li>
 			<li>
-				<a href="#">History</a>
+				<a href="#">Exports</a>
+			</li>
+			<li>
+				<a href="{{ path('settings_sensors') }}">Manage sensors</a>
 			</li>
 			<li>
 				<a href="#">Profile</a>
@@ -29,5 +33,8 @@
 				<a href="{{ path('fos_user_logout') }}">Logout</a>
 			</li>
 		</ul>
+		<div class="sidebar-version">
+			<span>Version: 0.1</span>
+		</div>
 	</div>
 {% endif %}

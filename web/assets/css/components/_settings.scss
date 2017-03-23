@@ -1,0 +1,13 @@
+/**
+ * @section : Settings
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+.settings {
+	form {
+		[class*="col-sm-"] {
+			padding-right: 10px !important;
+		}
+	}
+}

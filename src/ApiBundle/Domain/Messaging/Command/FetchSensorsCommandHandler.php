@@ -18,6 +18,7 @@ class FetchSensorsCommandHandler
 	 * FetchSensorsCommandHandler constructor.
 	 *
 	 * @param ApiService $apiService
+	 * @param EntityManager $entityManager
 	 */
 	public function __construct(ApiService $apiService, EntityManager $entityManager)
 	{
@@ -46,7 +47,7 @@ class FetchSensorsCommandHandler
 			$oDateTime->setTimestamp($aSensor['timestamp']);
 			$oSensor->setDatetime($oDateTime);
 
-			$this->entityManager->persist($oSensor);
+			$this->entityManager->merge($oSensor);
 		}
 
 		$this->entityManager->flush();

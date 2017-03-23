@@ -6,18 +6,19 @@
 
 html {
 	font-size: 100%;
-	background-color: $color-rhino;
+	background-color: $color-dolphin;
 	min-height: 100%;
 	height: 100%;
 }
 
 body {
+	background-color: $color-dolphin;
 	font-size: $f-size;
 	font-family: $f-font-family;
 	line-height: 1.333;
 	height: 100%;
 	color: $color-text;
-	background-color: $color-dolphin;
+	margin-bottom: 20px;
 }
 
 ::-moz-selection {
@@ -88,4 +89,39 @@ img {
 video {
 	position: relative;
 	z-index: 5;
+}
+
+#page-content-wrapper .container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+	height: 100%;
+
+	.row {
+		margin-left: 0;
+		margin-right: 0;
+		padding: 0 10px;
+	}
+
+	.header {
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 20px;
+		padding: 0 10px;
+		border-bottom: 1px solid $color-mouse;
+		background-color: white;
+
+		.title {
+			color: $color-text;
+		}
+	}
+}
+
+.row-no-padding {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+
+	[class*="col-"] {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
 }

@@ -1,7 +1,7 @@
 services:
     api.service:
         class: ApiBundle\Service\ApiService
-        arguments: ['%chibb_api_username%', '%chibb_api_password%']
+        arguments: ['%chibb_api_location%', '%chibb_api_username%', '%chibb_api_password%']
 
     api.command.fetch_sensors_command_handler:
         class: ApiBundle\Domain\Messaging\Command\FetchSensorsCommandHandler
