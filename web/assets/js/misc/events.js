@@ -21,6 +21,8 @@
 
 		// Parsley based form validation
 		app.util.initFormValidation('.js-validate-form');
+
+		app.util.initializeChart('#readingsChart');
 	}
 
     $('.js-menu-toggle').on('click', function(e) {

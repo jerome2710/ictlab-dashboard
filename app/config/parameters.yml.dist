@@ -22,3 +22,4 @@ parameters:
     # CHIBB API
     chibb_api_username: ~
     chibb_api_password: ~
+    chibb_api_location: CHIBB

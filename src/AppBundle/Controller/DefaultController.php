@@ -18,7 +18,15 @@ class DefaultController extends Controller
 		return $this->render('AppBundle:Default:dashboard.html.twig');
 	}
 
-
+	/**
+	 * @Route("/statistics", name="statistics")
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function statisticsAction(Request $request)
+	{
+		return $this->render('AppBundle:Default:statistics.html.twig');
+	}
 
 	/**
 	 * @Route("/sandbox/", name="sandbox")

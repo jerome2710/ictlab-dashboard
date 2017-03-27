@@ -21,14 +21,25 @@ class PositionType extends AbstractType
 	{
 		$builder->add('name', TextType::class);
 
-		$builder->add('delete', SubmitType::class);
+		// only add delete-button if position is not readonly
+		$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+			/** @var Position $position */
+			$position = $event->getData();
+			$form = $event->getForm();
+
+			if ($position && !$position->isReadonly()) {
+				$form->add('delete', SubmitType::class);
+			}
+		});
+
+		// set schedule for deletion
 		$builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-			/** @var Position $formData */
-			$formData = $event->getData();
+			/** @var Position $position */
+			$position = $event->getData();
 			$form = $event->getForm();
 
 			if ($form['delete']->isClicked()) {
-				$formData->setScheduleDeletion(true);
+				$position->setScheduleDeletion(true);
 			}
 		});
 	}

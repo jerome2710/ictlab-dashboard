@@ -13,6 +13,7 @@
 				"web/assets/js/vendor/jquery/plugins.js",
 				"web/assets/js/vendor/jquery/jquery.matchHeight.js",
 			  	"web/assets/js/vendor/countUp.js",
+				"web/assets/js/vendor/Chart.bundle.min.js",
 				"web/assets/js/vendor/parsley.config.js",
 				"web/assets/js/vendor/parsley.min.js",
 				"web/assets/js/vendor/parsley.validators.js",

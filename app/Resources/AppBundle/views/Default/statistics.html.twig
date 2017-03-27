@@ -1,0 +1,19 @@
+{% extends ':layouts:base.html.twig' %}
+
+{% set page_title = 'Statistics' %}
+{% set page_class = 'statistics' %}
+
+{% block body %}
+	<div class="row statistics">
+
+		<div class="card">
+			<h2 class="card__title">Readings</h2>
+			<p>Choose a sensor and then a type.</p>
+
+			<div class="chart">
+				<canvas id="readingsChart" width="400" height="400"></canvas>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

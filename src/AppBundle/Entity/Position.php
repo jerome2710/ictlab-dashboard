@@ -37,6 +37,13 @@ class Position
 
 	/**
 	 * @var boolean
+	 *
+	 * @ORM\Column(name="readonly", type="boolean")
+	 */
+    private $readonly = false;
+
+	/**
+	 * @var boolean
 	 */
     private $scheduleDeletion;
 
@@ -103,5 +110,21 @@ class Position
 	public function setScheduleDeletion($scheduleDeletion)
 	{
 		$this->scheduleDeletion = $scheduleDeletion;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isReadonly()
+	{
+		return $this->readonly;
+	}
+
+	/**
+	 * @param bool $readonly
+	 */
+	public function setReadonly($readonly)
+	{
+		$this->readonly = $readonly;
 	}
 }
