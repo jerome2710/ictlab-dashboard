@@ -99,12 +99,36 @@
 		},
 
         /**
+		 * Update sensor types with given data
+		 *
+         * @param data
+         */
+        updateSensorTypes: function (data) {
+        	var typesElement = $('.js-statistics-types');
+
+        	// fill select
+            typesElement.empty();
+            typesElement.append($('<option>').text('Choose a sensor type').attr('disabled', 'disabled').attr('selected', 'selected'));
+            $.each(data, function (index, value) {
+                typesElement.append($('<option>').text(value).attr('value', index));
+            });
+
+            // enable button
+			$('.js-statistics-button').removeClass('disabled');
+		},
+
+        /**
 		 * Initialize the chart
 		 *
          * @param selector
          */
 		initializeChart: function (selector) {
             var chartElement = $(selector);
+
+            // chart not found
+			if (chartElement.length === 0) {
+				return;
+			}
 
             var data = {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -144,10 +168,7 @@
 				maintainAspectRatio: false
 			};
 
-
-
-
-            var chart = new Chart(chartElement, {
+            app.chart = new Chart(chartElement, {
                 type: 'line',
                 data: data,
                 options: options

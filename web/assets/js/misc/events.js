@@ -22,6 +22,7 @@
 		// Parsley based form validation
 		app.util.initFormValidation('.js-validate-form');
 
+		// Initialize JSChart
 		app.util.initializeChart('#readingsChart');
 	}
 
@@ -29,6 +30,11 @@
         e.preventDefault();
         app.util.toggleMenu();
     });
+
+	$('.js-statistics-sensor').on('change', function(e) {
+		e.preventDefault();
+		app.util.updateSensorTypes($(this).find(':selected').data('types'));
+	});
 
 	// Initialize
 	$(document)

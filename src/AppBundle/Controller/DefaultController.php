@@ -25,7 +25,11 @@ class DefaultController extends Controller
 	 */
 	public function statisticsAction(Request $request)
 	{
-		return $this->render('AppBundle:Default:statistics.html.twig');
+		$sensors = $this->getDoctrine()->getRepository('AppBundle:Sensor')->findAll();
+
+		return $this->render('AppBundle:Default:statistics.html.twig', array(
+			'sensors' => $sensors
+		));
 	}
 
 	/**

@@ -3339,12 +3339,36 @@ window.Parsley.addValidator('fileSizeMax', {
 		},
 
         /**
+		 * Update sensor types with given data
+		 *
+         * @param data
+         */
+        updateSensorTypes: function (data) {
+        	var typesElement = $('.js-statistics-types');
+
+        	// fill select
+            typesElement.empty();
+            typesElement.append($('<option>').text('Choose a sensor type').attr('disabled', 'disabled').attr('selected', 'selected'));
+            $.each(data, function (index, value) {
+                typesElement.append($('<option>').text(value).attr('value', index));
+            });
+
+            // enable button
+			$('.js-statistics-button').removeClass('disabled');
+		},
+
+        /**
 		 * Initialize the chart
 		 *
          * @param selector
          */
 		initializeChart: function (selector) {
             var chartElement = $(selector);
+
+            // chart not found
+			if (chartElement.length === 0) {
+				return;
+			}
 
             var data = {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -3384,10 +3408,7 @@ window.Parsley.addValidator('fileSizeMax', {
 				maintainAspectRatio: false
 			};
 
-
-
-
-            var chart = new Chart(chartElement, {
+            app.chart = new Chart(chartElement, {
                 type: 'line',
                 data: data,
                 options: options
@@ -3420,6 +3441,7 @@ window.Parsley.addValidator('fileSizeMax', {
 		// Parsley based form validation
 		app.util.initFormValidation('.js-validate-form');
 
+		// Initialize JSChart
 		app.util.initializeChart('#readingsChart');
 	}
 
@@ -3427,6 +3449,11 @@ window.Parsley.addValidator('fileSizeMax', {
         e.preventDefault();
         app.util.toggleMenu();
     });
+
+	$('.js-statistics-sensor').on('change', function(e) {
+		e.preventDefault();
+		app.util.updateSensorTypes($(this).find(':selected').data('types'));
+	});
 
 	// Initialize
 	$(document)

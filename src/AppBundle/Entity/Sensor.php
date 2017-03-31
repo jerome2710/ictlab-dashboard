@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +44,19 @@ class Sensor
 	 */
     private $position;
 
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\ManyToMany(targetEntity="AppBundle\Entity\SensorType", inversedBy="sensors", indexBy="id")
+	 * @ORM\JoinColumn(onDelete="NO ACTION")
+	 * @ORM\JoinTable(
+	 *     name="sensors_x_sensortypes",
+	 *     joinColumns={@ORM\JoinColumn(name="sensor_id", referencedColumnName="id", onDelete="CASCADE")},
+	 *     inverseJoinColumns={@ORM\JoinColumn(name="sensortype_id", referencedColumnName="id")}
+	 * )
+	 */
+    private $sensorTypes;
+
     /**
      * @var float
      *
@@ -62,7 +76,15 @@ class Sensor
 	 */
     private $scheduleDeletion;
 
-    /**
+	/**
+	 * Sensor constructor.
+	 */
+    public function __construct()
+	{
+		$this->sensorTypes = new ArrayCollection();
+	}
+
+	/**
      * Get id
      *
      * @return integer 
@@ -174,6 +196,32 @@ class Sensor
 	}
 
 	/**
+	 * @return ArrayCollection
+	 */
+	public function getSensorTypes()
+	{
+		return $this->sensorTypes;
+	}
+
+	/**
+	 * @param SensorType $sensorType
+	 */
+	public function addSensorType(SensorType $sensorType)
+	{
+		if (!$this->sensorTypes->contains($sensorType)) {
+			$this->sensorTypes->add($sensorType);
+		}
+	}
+
+	/**
+	 * @param SensorType $sensorType
+	 */
+	public function removeSensorType(SensorType $sensorType)
+	{
+		$this->sensorTypes->remove($sensorType);
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function isScheduleDeletion()
@@ -187,5 +235,33 @@ class Sensor
 	public function setScheduleDeletion($scheduleDeletion)
 	{
 		$this->scheduleDeletion = $scheduleDeletion;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName()
+	{
+		if ($this->getPosition()) {
+			return $this->getPosition()->getName();
+		}
+
+		return $this->getUuid();
+	}
+
+	/**
+	 * Return a JSON representation of sensor type names
+	 *
+	 * @return string
+	 */
+	public function getJsonSensorTypes()
+	{
+		$typeNames = array();
+		foreach ($this->getSensorTypes() as $sensorType) {
+			/** @var SensorType $sensorType */
+			$typeNames[] = $sensorType->getName();
+		}
+
+		return json_encode($typeNames);
 	}
 }

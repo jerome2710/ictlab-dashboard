@@ -10,6 +10,7 @@ class ApiService
 	const API_URL = 'https://api.chibb-box.nl';
 	const API_ENDPOINT_AUTHENTICATE = '/authenticate';
 	const API_ENDPOINT_SENSORS_LIST = '/sensors';
+	const API_ENDPOINT_SENSORS_TYPES = '/sensors/types';
 
 	/** @var string $apiLocation */
 	private $apiLocation;
@@ -69,10 +70,11 @@ class ApiService
 	/**
 	 * Perform a request using the given endpoint
 	 *
-	 * @param $endpoint
+	 * @param string $endpoint
+	 * @param array $query
 	 * @return array|bool
 	 */
-	private function request($endpoint)
+	private function request($endpoint, $query = array())
 	{
 		if (is_null($this->accessToken)) {
 			$this->accessToken = $this->getAccessToken();
@@ -83,7 +85,8 @@ class ApiService
 			'GET', static::API_URL . $endpoint, array(
 				'headers' => array(
 					'x-access-token' => $this->accessToken
-				)
+				),
+				'query' => $query
 			)
 		);
 
@@ -107,6 +110,25 @@ class ApiService
 
 		if ($mResponse && !empty($mResponse['sensors'])) {
 			return $mResponse['sensors'];
+		}
+
+		return array();
+	}
+
+	/**
+	 * Get sensor types by sensor
+	 *
+	 * @param $uuid
+	 * @return array
+	 */
+	public function getTypesBySensor($uuid)
+	{
+		$mResponse = $this->request(static::API_ENDPOINT_SENSORS_TYPES, array(
+			'uuid' => $uuid
+		));
+
+		if ($mResponse && !empty($mResponse['types'])) {
+			return $mResponse['types'];
 		}
 
 		return array();
