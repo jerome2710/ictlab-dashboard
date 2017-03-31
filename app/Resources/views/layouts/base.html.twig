@@ -40,8 +40,6 @@
 
 		{% include 'inc/sidebar.html.twig' %}
 
-		{% include 'inc/messages.html.twig' %}
-
 		<div id="page-content-wrapper">
 			<div class="container-fluid {{ page_class|default('default') }}">
 				{% if app.user %}
@@ -51,6 +49,7 @@
 						</div>
 					</div>
 				{% endif %}
+				{% include 'inc/messages.html.twig' %}
 				{% block body %}{% endblock %}
 			</div>
 		</div>
