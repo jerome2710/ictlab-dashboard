@@ -2,12 +2,12 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% set page_title = 'We hebben u een mail gestuurd' %}
+{% set page_title = 'Mail sent' %}
 
 {% block fos_user_content %}
 	<section class="card">
 		<h1 class="page-title">{{ page_title }}</h1>
 		<p>{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
-		<a class="button button--primary" href="{{ path('fos_user_security_login') }}">Terug naar inlogscherm</a>
+		<a class="button button--primary" href="{{ path('fos_user_security_login') }}">Back to login</a>
 	</section>
 {% endblock %}
