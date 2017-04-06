@@ -7,8 +7,19 @@
 	<div class="row location">
 		<div class="col-lg-12">
 			<h2 class="name">Rotterdam Heijplaat</h2>
-			<span class="date">{{ 'now'|date('d-m-Y H:i:s') }}</span>
+			<span class="date">{{ 'now'|date('l, F jS') }}</span>
+			<span class="time">{{ 'now'|date('H:i') }}</span>
 		</div>
+	</div>
+
+	<div class="graphical-overlay">
+		<img src="{{ asset('assets/images/misc/chibb.png') }}">
+		{% for position, types in readings %}
+			<div class="sensor {{ position|slugify }}">
+				<span class="name">{{ position }}</span>
+				<span class="reading">{{ types.temperature|default('???') }} &deg;C</span>
+			</div>
+		{% endfor %}
 	</div>
 
 	<div class="ground"></div>

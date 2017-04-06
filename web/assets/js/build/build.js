@@ -3335,7 +3335,45 @@ window.Parsley.addValidator('fileSizeMax', {
 		 * Toggle the sidebar menu
          */
 		toggleMenu: function () {
-			$("#wrapper").toggleClass('show');
+			$('#wrapper').toggleClass('show');
+		},
+
+        resizeGraphicalOverlay: function() {
+			var graphicalElement = $('.graphical-overlay');
+			var ratio = 1.65;
+
+			if (graphicalElement.length === 0) {
+				return;
+			}
+
+			var calculatedWidth = $(window).width() - $('#sidebar-toggle').width() - 30;
+			var calculatedHeight = $(window).height() - $('.content .header').height() - 20 - $('.content .ground').height();
+
+			// create padding
+			// var heightPadding = calculatedHeight / 10;
+			// calculatedHeight -= heightPadding * 2;
+
+			// force ratio
+			var currentRatio = calculatedWidth / calculatedHeight;
+			if (currentRatio !== ratio) {
+				if (currentRatio > ratio) {
+					// less width
+					calculatedWidth = calculatedHeight * ratio;
+				} else {
+					// less height
+					calculatedHeight = calculatedWidth / ratio;
+				}
+			}
+
+			// position with space remaining
+			var calculatedTop = $('.content .header').height() + 20;
+			var calculatedRight = 30;
+
+			// resize
+			graphicalElement.width(calculatedWidth);
+			graphicalElement.height(calculatedHeight);
+			graphicalElement.css('top', calculatedTop);
+			graphicalElement.css('right', calculatedRight);
 		},
 
         /**
@@ -3441,6 +3479,9 @@ window.Parsley.addValidator('fileSizeMax', {
 		// Parsley based form validation
 		app.util.initFormValidation('.js-validate-form');
 
+		// Resize graphical overlay
+        app.util.resizeGraphicalOverlay();
+
 		// Initialize JSChart
 		app.util.initializeChart('#readingsChart');
 	}
@@ -3453,6 +3494,10 @@ window.Parsley.addValidator('fileSizeMax', {
 	$('.js-statistics-sensor').on('change', function(e) {
 		e.preventDefault();
 		app.util.updateSensorTypes($(this).find(':selected').data('types'));
+	});
+
+	$(window).on('resize', function() {
+		app.util.resizeGraphicalOverlay();
 	});
 
 	// Initialize

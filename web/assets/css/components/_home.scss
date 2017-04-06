@@ -5,6 +5,72 @@
  */
 
 .home {
+	color: $color-wolf;
+
+	.location {
+		.name {
+			color: $color-wolf;
+			font-size: $font-size-h3;
+		}
+
+		.date, .time {
+			display: block;
+			font-size: $font-size-h4;
+		}
+	}
+
+	.graphical-overlay {
+		position: absolute;
+		width: 0;
+		height: 0;
+
+		img {
+			width: 100%;
+		}
+
+		.sensor {
+			background: rgba(255,255,255,0.5);
+			border-radius: $border-radius-base;
+			padding: 15px;
+			position: absolute;
+			display: none; /** prevent showing of unmapped positions **/
+
+			&.living-room {
+				display: block;
+				top: 40%;
+				right: 30%;
+			}
+
+			&.greenhouse {
+				display: block;
+				top: 5%;
+				right: 45%;
+			}
+
+			&.outside {
+				display: block;
+				top: 15%;
+				left: 20%;
+			}
+
+			&.study-room {
+				display: block;
+				top: 40%;
+				right: 10%;
+			}
+
+			span {
+				display: block;
+				color: $color-panther;
+				font-size: 17px;
+
+				&.name {
+					font-weight: 600;
+				}
+			}
+		}
+	}
+
 	.ground {
 		-webkit-box-direction: normal;
 		-webkit-box-flex: 1;

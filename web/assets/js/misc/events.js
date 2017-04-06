@@ -22,6 +22,9 @@
 		// Parsley based form validation
 		app.util.initFormValidation('.js-validate-form');
 
+		// Resize graphical overlay
+        app.util.resizeGraphicalOverlay();
+
 		// Initialize JSChart
 		app.util.initializeChart('#readingsChart');
 	}
@@ -34,6 +37,10 @@
 	$('.js-statistics-sensor').on('change', function(e) {
 		e.preventDefault();
 		app.util.updateSensorTypes($(this).find(':selected').data('types'));
+	});
+
+	$(window).on('resize', function() {
+		app.util.resizeGraphicalOverlay();
 	});
 
 	// Initialize

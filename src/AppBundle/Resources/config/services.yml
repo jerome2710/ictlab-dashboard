@@ -4,3 +4,6 @@ parameters:
 #    parameter_name: value
 
 services:
+    app.service.latest_reading:
+        class: AppBundle\Service\LatestReadingService
+        arguments: ['@doctrine.orm.entity_manager']

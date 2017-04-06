@@ -18,6 +18,7 @@ class AppKernel extends Kernel
 			new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
 			new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
+			new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
 
             new AppBundle\AppBundle(),
 			new UserBundle\UserBundle(),

@@ -3,6 +3,7 @@
 namespace ApiBundle\Domain\Messaging\Command;
 
 use ApiBundle\Service\ApiService;
+use AppBundle\Entity\Reading;
 use AppBundle\Entity\Sensor;
 use AppBundle\Entity\SensorType;
 use Doctrine\ORM\EntityManager;
@@ -54,16 +55,29 @@ class FetchSensorsCommandHandler
 
 			// Save all found sensor types
 			foreach ($aSensorTypes as $aSensorType) {
-				$oSensorType = $this->entityManager->getRepository('AppBundle:SensorType')->findOneByName($aSensorType['_id']);
 
+				// Save sensor type
+				$oSensorType = $this->entityManager->getRepository('AppBundle:SensorType')->findOneByName($aSensorType['_id']);
 				if (!$oSensorType) {
 					$oSensorType = new SensorType();
 					$oSensorType->setName($aSensorType['_id']);
 					$this->entityManager->persist($oSensorType);
 					$this->entityManager->flush();
 				}
-
 				$oSensor->addSensorType($oSensorType);
+
+				// Save reading
+				$oReading = $this->entityManager->getRepository('AppBundle:Reading')->findOneBy(array(
+					'sensor' => $oSensor,
+					'sensorType' => $oSensorType
+				));
+				if (!$oReading) {
+					$oReading = new Reading();
+					$oReading->setSensor($oSensor);
+					$oReading->setSensorType($oSensorType);
+				}
+				$oReading->setReading($aSensorType['reading']);
+				$this->entityManager->persist($oReading);
 			}
 
 			$this->entityManager->merge($oSensor);

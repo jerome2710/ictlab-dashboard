@@ -95,7 +95,45 @@
 		 * Toggle the sidebar menu
          */
 		toggleMenu: function () {
-			$("#wrapper").toggleClass('show');
+			$('#wrapper').toggleClass('show');
+		},
+
+        resizeGraphicalOverlay: function() {
+			var graphicalElement = $('.graphical-overlay');
+			var ratio = 1.65;
+
+			if (graphicalElement.length === 0) {
+				return;
+			}
+
+			var calculatedWidth = $(window).width() - $('#sidebar-toggle').width() - 30;
+			var calculatedHeight = $(window).height() - $('.content .header').height() - 20 - $('.content .ground').height();
+
+			// create padding
+			// var heightPadding = calculatedHeight / 10;
+			// calculatedHeight -= heightPadding * 2;
+
+			// force ratio
+			var currentRatio = calculatedWidth / calculatedHeight;
+			if (currentRatio !== ratio) {
+				if (currentRatio > ratio) {
+					// less width
+					calculatedWidth = calculatedHeight * ratio;
+				} else {
+					// less height
+					calculatedHeight = calculatedWidth / ratio;
+				}
+			}
+
+			// position with space remaining
+			var calculatedTop = $('.content .header').height() + 20;
+			var calculatedRight = 30;
+
+			// resize
+			graphicalElement.width(calculatedWidth);
+			graphicalElement.height(calculatedHeight);
+			graphicalElement.css('top', calculatedTop);
+			graphicalElement.css('right', calculatedRight);
 		},
 
         /**

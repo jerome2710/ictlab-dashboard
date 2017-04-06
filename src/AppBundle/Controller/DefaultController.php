@@ -15,7 +15,12 @@ class DefaultController extends Controller
 	 */
 	public function indexAction(Request $request)
 	{
-		return $this->render('AppBundle:Default:dashboard.html.twig');
+		// find default positions & latest readings
+		$readings = $this->getLatestReadingService()->findLatestDefaultPositionReadings();
+
+		return $this->render('AppBundle:Default:dashboard.html.twig', array(
+			'readings' => $readings
+		));
 	}
 
 	/**
@@ -40,5 +45,13 @@ class DefaultController extends Controller
 	public function sandboxAction(Request $request)
 	{
 		die();
+	}
+
+	/**
+	 * @return \AppBundle\Service\LatestReadingService
+	 */
+	public function getLatestReadingService()
+	{
+		return $this->get('app.service.latest_reading');
 	}
 }
