@@ -38,9 +38,11 @@
 	<body>
 		{% include 'inc/header.html.twig' %}
 
-		{% include 'inc/sidebar.html.twig' %}
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			{% include 'inc/sidebar.html.twig' %}
+		{% endif %}
 
-		<div id="page-content-wrapper">
+		<div class="content"{% if is_granted('IS_AUTHENTICATED_FULLY') %} id="page-content-wrapper"{% endif %}>
 			<div class="container-fluid {{ page_class|default('default') }}">
 				{% if app.user %}
 					<div class="row header">

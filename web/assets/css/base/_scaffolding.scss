@@ -91,7 +91,12 @@ video {
 	z-index: 5;
 }
 
-#page-content-wrapper .container-fluid {
+.content {
+	height: 100%;
+	width: 100%;
+}
+
+.content .container-fluid {
 	padding-left: 0;
 	padding-right: 0;
 	height: 100%;
