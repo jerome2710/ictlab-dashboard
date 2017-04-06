@@ -3338,6 +3338,9 @@ window.Parsley.addValidator('fileSizeMax', {
 			$('#wrapper').toggleClass('show');
 		},
 
+        /**
+		 * Resize the graphical overlay on the dashboard
+         */
         resizeGraphicalOverlay: function() {
 			var graphicalElement = $('.graphical-overlay');
 			var ratio = 1.65;
@@ -3346,12 +3349,13 @@ window.Parsley.addValidator('fileSizeMax', {
 				return;
 			}
 
-			var calculatedWidth = $(window).width() - $('#sidebar-toggle').width() - 30;
-			var calculatedHeight = $(window).height() - $('.content .header').height() - 20 - $('.content .ground').height();
+			// calculate some widths, heights and paddings
+            var calculatedRight = 30;
+            var calculatedWidth = $(window).width() - $('#sidebar-toggle').width() - calculatedRight - 50;
 
-			// create padding
-			// var heightPadding = calculatedHeight / 10;
-			// calculatedHeight -= heightPadding * 2;
+            var calculatedTop = $('.content .header').height() + 20;
+            var calculatedBottom = 100;
+			var calculatedHeight = $(window).height() - calculatedTop - calculatedBottom;
 
 			// force ratio
 			var currentRatio = calculatedWidth / calculatedHeight;
@@ -3364,10 +3368,6 @@ window.Parsley.addValidator('fileSizeMax', {
 					calculatedHeight = calculatedWidth / ratio;
 				}
 			}
-
-			// position with space remaining
-			var calculatedTop = $('.content .header').height() + 20;
-			var calculatedRight = 30;
 
 			// resize
 			graphicalElement.width(calculatedWidth);

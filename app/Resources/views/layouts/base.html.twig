@@ -43,6 +43,7 @@
 		{% endif %}
 
 		<div class="content"{% if is_granted('IS_AUTHENTICATED_FULLY') %} id="page-content-wrapper"{% endif %}>
+			<div class="overlay"></div>
 			<div class="container-fluid {{ page_class|default('default') }}">
 				{% if app.user %}
 					<div class="row header">

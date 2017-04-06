@@ -20,6 +20,7 @@
 	}
 
 	.graphical-overlay {
+		z-index: 2;
 		position: absolute;
 		width: 0;
 		height: 0;
@@ -72,16 +73,31 @@
 	}
 
 	.ground {
+		z-index: 1;
 		-webkit-box-direction: normal;
 		-webkit-box-flex: 1;
 		-webkit-user-select: none;
-		background-color: $color-frog;
 		box-sizing: border-box;
 		display: block;
 		font-family: sans-serif;
 		position: fixed;
-		bottom: 0;
-		height: 100px;
+		bottom: -5px;
 		width: 100%;
+
+		.skyline {
+			height: 200px;
+
+			.foreground {
+				fill: #28486C;
+			}
+
+			.background {
+				fill: #4982C2;
+			}
+
+			.grass {
+				fill: #83B817;
+			}
+		}
 	}
 }

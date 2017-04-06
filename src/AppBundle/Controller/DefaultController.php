@@ -38,13 +38,13 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/sandbox/", name="sandbox")
+	 * @Route("/exports", name="exports")
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function sandboxAction(Request $request)
+	public function exportsAction(Request $request)
 	{
-		die();
+		return $this->render('AppBundle:Default:exports.html.twig');
 	}
 
 	/**

@@ -17,8 +17,21 @@ body {
 	transition: all 0.5s ease;
 }
 
-#wrapper.show {
-	padding-left: 250px;
+#wrapper .overlay {
+	display: none;
+}
+
+#wrapper.show .overlay {
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 99;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 #sidebar-wrapper, #sidebar-toggle {
@@ -58,20 +71,26 @@ body {
 	left: 250px;
 	width: 0;
 	margin-left: -250px;
+	background-color: white;
 
 	.sidebar-header {
 		display: block;
 		width: 250px;
+		background-color: $color-frog;
 
 		a {
 			color: $color-wolf;
 			text-decoration: none;
 			font-weight: 800;
 		}
+
+		&:after {
+			clear: both;
+		}
 	}
 
 	.sidebar-nav {
-		border-top: 1px solid $color-rhino;
+		border-top: 1px solid $color-mouse;
 		clear: both;
 		width: 250px;
 		margin: 0;
@@ -80,37 +99,18 @@ body {
 
 		li {
 			text-indent: 20px;
-			line-height: 40px;
+			line-height: 60px;
+			border-bottom: 1px solid $color-mouse;
+
+			&:hover {
+				background-color: $color-mouse;
+			}
 
 			a {
 				display: block;
 				text-decoration: none;
-				color: $color-wolf;
-
-				&:hover {
-					text-decoration: none;
-					color: $color-wolf;
-					background: rgba(255, 255, 255, 0.2);
-				}
-
-				&:active, &:focus {
-					text-decoration: none;
-				}
-			}
-		}
-	}
-
-	.sidebar-nav > .sidebar-brand {
-		height: 65px;
-		font-size: 18px;
-		line-height: 60px;
-
-		a {
-			color: $color-seal;
-
-			&:hover {
-				color: $color-wolf;
-				background: none;
+				color: $color-panther;
+				font-weight: 500;
 			}
 		}
 	}
