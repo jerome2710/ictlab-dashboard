@@ -26,7 +26,7 @@ class Reading
 	/**
 	 * @var Sensor
 	 *
-	 * @ManyToOne(targetEntity="AppBundle\Entity\Sensor")
+	 * @ManyToOne(targetEntity="AppBundle\Entity\Sensor", cascade={"persist"})
 	 * @JoinColumn(name="sensor_id", referencedColumnName="id")
 	 */
     private $sensor;
@@ -34,7 +34,7 @@ class Reading
     /**
      * @var SensorType
      *
-     * @ManyToOne(targetEntity="AppBundle\Entity\SensorType")
+     * @ManyToOne(targetEntity="AppBundle\Entity\SensorType", cascade={"persist"})
 	 * @JoinColumn(name="sensortype_id", referencedColumnName="id")
      */
     private $sensorType;
