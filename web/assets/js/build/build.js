@@ -3559,7 +3559,7 @@ c.toDisplay)return c.toDisplay(b,c,d);var e={d:b.getUTCDate(),D:q[d].daysShort[b
 			});
 
 			$.ajax({
-				url: (app.dev && '/app_dev.php') + '/xhr/readings',
+				url: ((app.dev) ? '/app_dev.php' : '') + '/xhr/readings',
 				method: 'GET',
 				data: {
 					dateFrom: dateFrom,

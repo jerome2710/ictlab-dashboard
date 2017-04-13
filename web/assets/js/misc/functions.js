@@ -302,7 +302,7 @@
 			});
 
 			$.ajax({
-				url: (app.dev && '/app_dev.php') + '/xhr/readings',
+				url: ((app.dev) ? '/app_dev.php' : '') + '/xhr/readings',
 				method: 'GET',
 				data: {
 					dateFrom: dateFrom,
