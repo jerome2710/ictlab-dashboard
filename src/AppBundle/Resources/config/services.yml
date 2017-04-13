@@ -7,3 +7,7 @@ services:
     app.service.latest_reading:
         class: AppBundle\Service\LatestReadingService
         arguments: ['@doctrine.orm.entity_manager']
+
+    app.service.sensor:
+        class: AppBundle\Service\SensorService
+        arguments: ['@doctrine.orm.entity_manager']

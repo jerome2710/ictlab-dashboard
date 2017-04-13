@@ -18,6 +18,9 @@
 				"web/assets/js/vendor/parsley.min.js",
 				"web/assets/js/vendor/parsley.validators.js",
 				"web/assets/js/vendor/modernizr.js",
+				"web/assets/js/vendor/bootstrap.min.js",
+				"web/assets/js/vendor/bootstrap-datepicker.min.js",
+				"web/assets/js/vendor/bootstrap-datepicker.nl.min.js",
 				"web/assets/js/polyfills/svg4everybody.js",
 				"web/assets/js/misc/functions.js",
 				"web/assets/js/misc/events.js"

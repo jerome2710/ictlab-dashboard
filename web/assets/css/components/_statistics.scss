@@ -5,6 +5,15 @@
  */
 
 .statistics {
+	.statistics-form {
+		padding: 0 !important;
+
+		.form {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+	}
+
 	.chart {
 		margin-top: 20px;
 		height: 400px;

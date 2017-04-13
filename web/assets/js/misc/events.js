@@ -26,22 +26,45 @@
         app.util.resizeGraphicalOverlay();
 
 		// Initialize JSChart
-		app.util.initializeChart('#readingsChart');
+		app.util.initializeChart();
+
+		// Initialize datepickers
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            endDate: '0d'
+        });
+
+        // Toggle menu
+        $('.js-menu-toggle').on('click', function(e) {
+            e.preventDefault();
+            app.util.toggleMenu();
+        });
+
+        // Update sensor types dropdown
+        app.util.initalizeSensorClicks();
+
+        // Enable submit button
+        $('.js-statistics-types').on('change', function () {
+            $('.js-statistics-submit').removeClass('disabled');
+        });
+
+        // Load sensor data
+        $('.js-statistics-submit').on('click', function (e) {
+            e.preventDefault();
+            app.util.updateChart();
+        });
+
+        // Add another sensor type to selection
+        $('.js-statistics-addSensor').on('click', function(e) {
+            e.preventDefault();
+            app.util.addSensor(e);
+        });
+
+        // Resize dashboard graphical overlay
+        $(window).on('resize', function() {
+            app.util.resizeGraphicalOverlay();
+        });
 	}
-
-    $('.js-menu-toggle').on('click', function(e) {
-        e.preventDefault();
-        app.util.toggleMenu();
-    });
-
-	$('.js-statistics-sensor').on('change', function(e) {
-		e.preventDefault();
-		app.util.updateSensorTypes($(this).find(':selected').data('types'));
-	});
-
-	$(window).on('resize', function() {
-		app.util.resizeGraphicalOverlay();
-	});
 
 	// Initialize
 	$(document)

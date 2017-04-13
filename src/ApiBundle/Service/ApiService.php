@@ -11,6 +11,7 @@ class ApiService
 	const API_ENDPOINT_AUTHENTICATE = '/authenticate';
 	const API_ENDPOINT_SENSORS_LIST = '/sensors';
 	const API_ENDPOINT_SENSORS_TYPES = '/sensors/types';
+	const API_ENDPOINT_READINGS = '/readings';
 
 	/** @var string $apiLocation */
 	private $apiLocation;
@@ -129,6 +130,33 @@ class ApiService
 
 		if ($mResponse && !empty($mResponse['types'])) {
 			return $mResponse['types'];
+		}
+
+		return array();
+	}
+
+	/**
+	 * Get readings by parameters
+	 *
+	 * @param $dateFrom
+	 * @param $dateTo
+	 * @param $interval
+	 * @param $uuid
+	 * @param $type
+	 * @return array
+	 */
+	public function getReadings($dateFrom, $dateTo, $interval, $uuid, $type)
+	{
+		$mResponse = $this->request(static::API_ENDPOINT_READINGS, array(
+			'dateFrom' => $dateFrom,
+			'dateTo' => $dateTo,
+			'interval' => $interval,
+			'uuid' => $uuid,
+			'type' => $type
+		));
+
+		if ($mResponse && !empty($mResponse['readings'])) {
+			return $mResponse['readings'];
 		}
 
 		return array();

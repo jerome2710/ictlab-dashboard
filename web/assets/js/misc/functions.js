@@ -11,6 +11,8 @@
 	app.dev = window.location.href.indexOf('app_dev') !== -1;
 	app.chart = null;
 
+	const STATUS_SUCCESS = 'success';
+
 	/**
 	 * Useful environment variable to see if we're dealing with a touch device
 	 *
@@ -139,78 +141,195 @@
         /**
 		 * Update sensor types with given data
 		 *
-         * @param data
+         * @param e
          */
-        updateSensorTypes: function (data) {
-        	var typesElement = $('.js-statistics-types');
+        updateSensorTypes: function (e) {
+        	var target = $(e.target),
+        		data = target.find(':selected').data('types'),
+        		typesElement = target.closest('.sensor').find('.js-statistics-types');
 
         	// fill select
             typesElement.empty();
             typesElement.append($('<option>').text('Choose a sensor type').attr('disabled', 'disabled').attr('selected', 'selected'));
             $.each(data, function (index, value) {
-                typesElement.append($('<option>').text(value).attr('value', index));
+                typesElement.append($('<option>').text(value).attr('value', value));
+            });
+		},
+
+        /**
+		 * Add another sensor to selection
+		 *
+         * @param e
+         */
+        addSensor: function (e) {
+            var html = $('#js-statistics-addSensor-template').html(),
+                target = $(e.target),
+                index = target.data('sensor-count') + 1,
+                result = html.replace(/\%index%/g, index);
+
+            $('.sensor:last').after(result);
+            target.data('sensor-count', index);
+
+            this.initalizeSensorClicks();
+		},
+
+        /**
+		 * Initialize on click for removeSensor - only for last added sensor
+         */
+        initalizeSensorClicks: function () {
+        	// Type updating
+            $('.sensor:last .js-statistics-sensor').on('change', function(e) {
+                e.preventDefault();
+                app.util.updateSensorTypes(e);
             });
 
-            // enable button
-			$('.js-statistics-button').removeClass('disabled');
+        	// Removing
+            $('.sensor:last .js-statistics-removeSensor').one('click', function(e) {
+                e.preventDefault();
+                app.util.removeSensor(e);
+            });
+		},
+
+        /**
+		 * Remove sensor type from selection
+		 *
+         * @param e
+         */
+        removeSensor: function (e) {
+			var addButton = $('.js-statistics-addSensor'),
+				parent = $(e.target).closest('.sensor');
+
+			parent.remove();
+			addButton.data('sensor-count', addButton.data('sensor-count') - 1);
 		},
 
         /**
 		 * Initialize the chart
-		 *
-         * @param selector
          */
-		initializeChart: function (selector) {
-            var chartElement = $(selector);
+		initializeChart: function (labels, dataset) {
+            var chartElement = $('#readingsChart'),
+				chartOverlay = $('.chart-overlay');
+
+            console.log('Initializing chart');
 
             // chart not found
 			if (chartElement.length === 0) {
 				return;
 			}
 
-            var data = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [65, 59, 80, 81, 56, 55, 40],
-                        spanGaps: false,
-                    },
-                    {
-                        type: 'bar',
-                        label: 'Bar Component',
-                        data: [100, 50, 30],
-                    }
-                ]
-            };
+			// demo data
+			if (dataset === undefined) {
+				labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+				dataset = [{label: 'Fake chart', readings: [18.1, 19.2, 18.9, 19.3, 19.4, 19.0, 18.8]}];
+			} else {
+                chartOverlay.hide();
+            }
 
-            var options = {
-                responsive: true,
-				maintainAspectRatio: false
-			};
+            var datasets = [];
+            for (var i = 0; i < dataset.length; i++) {
+				datasets.push({
+                    label: dataset[i].label,
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: dataset[i].readings,
+                    spanGaps: false
+                });
+			}
 
+			// build the chart
             app.chart = new Chart(chartElement, {
                 type: 'line',
-                data: data,
-                options: options
+                data: {
+                    labels: labels,
+                    datasets: datasets
+				},
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+				}
             });
+		},
+
+        /**
+		 * Update the chart
+         */
+        updateChart: function () {
+			var chartOverlay = $('.chart-overlay'),
+				dateFrom = $('.js-statistics-dateFrom').val(),
+				dateTo = $('.js-statistics-dateTo').val(),
+				interval = $('.js-statistics-interval').find('.active input').val(),
+				sensors = $('select[name^=sensors]'),
+				sensorData = {};
+
+			console.log('Updating chart');
+
+			// show loading screen
+			chartOverlay.show();
+			chartOverlay.html('<p><i class="fa fa-spinner fa-spin"></i> Loading...</p>');
+
+			// prepare sensor request data
+			const regex = /sensors\[(\w+)]\[(\w+)]/;
+			sensors.each(function () {
+				var name = $(this).attr('name'),
+					value = $(this).val(),
+					groups = regex.exec(name),
+					index = parseInt(groups[1]),
+					key = groups[2];
+
+				if (sensorData[index] === undefined) {
+                    sensorData[index] = {
+						sensor: '',
+						type: ''
+					}
+				}
+
+                sensorData[index][key] = value;
+			});
+
+			$.ajax({
+				url: (app.dev && '/app_dev.php') + '/xhr/readings',
+				method: 'GET',
+				data: {
+					dateFrom: dateFrom,
+					dateTo: dateTo,
+					interval: interval,
+					sensors: sensorData
+				}
+			}).done(function (result) {
+				if (result.status === STATUS_SUCCESS) {
+                    app.util.initializeChart(result.data.labels, result.data.dataset);
+				} else {
+                    app.util.setChartFailMessage('Something went wrong, please try again.');
+                }
+			}).fail(function (jqXHR, textStatus) {
+                app.util.setChartFailMessage('Something went wrong, please try again. ( ' + textStatus + ')');
+            });
+		},
+
+        /**
+		 * Set the chart overlay with fail message
+		 *
+         * @param message
+         */
+		setChartFailMessage: function (message) {
+        	var overlay = $('.chart-overlay');
+
+        	overlay.show().addClass('text-danger').html('<p>' + message + '</p>');
 		}
 	};
 
