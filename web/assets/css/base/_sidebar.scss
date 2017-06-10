@@ -1,0 +1,156 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+	overflow-x: hidden;
+}
+
+#wrapper {
+	height: 100%;
+	padding-left: 0;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+#wrapper .overlay {
+	display: none;
+}
+
+#wrapper.show .overlay {
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 99;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+#sidebar-wrapper, #sidebar-toggle {
+	z-index: 1000;
+	position: fixed;
+	height: 100%;
+	overflow-y: auto;
+	background: $color-panther;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+#sidebar-toggle {
+	left: 0;
+	width: 50px;
+}
+
+#wrapper.show #sidebar-wrapper {
+	width: 250px;
+}
+
+#page-content-wrapper {
+	position: absolute;
+	padding-left: 50px;
+}
+
+#wrapper.show #page-content-wrapper {
+	position: absolute;
+	margin-right: -250px;
+	padding-left: 0;
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+	left: 250px;
+	width: 0;
+	margin-left: -250px;
+	background-color: white;
+
+	.sidebar-header {
+		display: block;
+		width: 250px;
+		background-color: $color-frog;
+
+		a {
+			color: $color-wolf;
+			text-decoration: none;
+			font-weight: 800;
+		}
+
+		&:after {
+			clear: both;
+		}
+	}
+
+	.sidebar-nav {
+		border-top: 1px solid $color-mouse;
+		clear: both;
+		width: 250px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			text-indent: 20px;
+			line-height: 60px;
+			border-bottom: 1px solid $color-mouse;
+
+			&:hover {
+				background-color: $color-mouse;
+			}
+
+			a {
+				display: block;
+				text-decoration: none;
+				color: $color-panther;
+				font-weight: 500;
+			}
+		}
+	}
+
+	.sidebar-version {
+		position: absolute;
+		bottom: 20px;
+		height: 20px;
+
+		span {
+			font-size: $font-size-small;
+			margin: 20px;
+			color: $color-wolf;
+		}
+	}
+}
+
+.menu-button {
+	@include transition(.2s);
+	width: 52px;
+	height: 52px;
+	border: none;
+	background: none;
+	padding: 0;
+	display: inline-block;
+	float: right;
+
+	//@media screen and (min-width: $bp-lg) {
+	//	display: none;
+	//}
+
+	i {
+		@include transition(.2s);
+		color: $color-wolf;
+	}
+
+	&:hover,
+	&:focus {
+		i {
+			color: darken($color-wolf, 40%);
+		}
+	}
+}

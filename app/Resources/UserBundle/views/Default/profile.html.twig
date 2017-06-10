@@ -1,0 +1,20 @@
+{% extends ':layouts:base.html.twig' %}
+
+{% set page_title = 'Profile' %}
+{% set page_class = 'profile' %}
+
+{% block body %}
+	<div class="row profile">
+
+		<div class="card">
+			<h2 class="card__title">Profile</h2>
+			<p>Edit your username, e-mail addresss and password.</p>
+
+			{{ form_start(edit_form) }}
+			{{ form_widget(edit_form) }}
+			<input class="btn btn-success" type="submit" value="Save"/>
+			{{ form_end(edit_form) }}
+		</div>
+
+	</div>
+{% endblock %}

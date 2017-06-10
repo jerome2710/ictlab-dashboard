@@ -1,0 +1,27 @@
+{% extends ':layouts:base.html.twig' %}
+
+{% block body %}
+	<div class="content-centered login-page">
+		<div class="container">
+			<div class="wrapper-inner">
+				{% for type, messages in app.session.flashBag.all %}
+					{% for message in messages %}
+						<div class="alert {{ type }}">
+							{{ message|trans({}, 'FOSUserBundle') }}
+						</div>
+					{% endfor %}
+				{% endfor %}
+
+				{% block fos_user_content %}
+				{% endblock fos_user_content %}
+			</div>
+		</div>
+		<div class="clouds">
+			<div class="cloud x1"></div>
+			<div class="cloud x2"></div>
+			<div class="cloud x3"></div>
+			<div class="cloud x4"></div>
+			<div class="cloud x5"></div>
+		</div>
+	</div>
+{% endblock %}

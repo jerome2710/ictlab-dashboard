@@ -1,0 +1,10 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% set page_title = 'Reset password' %}
+
+{% block fos_user_content %}
+	<section class="card">
+		<h1 class="page-title">{{ page_title }}</h1>
+		{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+	</section>
+{% endblock fos_user_content %}

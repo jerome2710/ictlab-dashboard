@@ -1,0 +1,97 @@
+{% extends ':layouts:base.html.twig' %}
+
+{% set page_title = 'Manage sensors' %}
+{% set page_class = 'settings' %}
+
+{% block body %}
+	<div class="row settings">
+
+		{% if sensorWarnings|length %}
+			<div class="alert alert-warning">
+				<p>The following sensors need your attention because of low battery levels or intermittent readings:</p>
+				<ul>
+					{% for sensor in sensorWarnings %}
+						<li>
+							<span>{{ sensor.position ? sensor.position.name : sensor.uuid }}</span> -
+							<span{% if sensor.battery < 10.00 %} class="text-danger"{% endif %}>{{ sensor.battery }}%</span> -
+							<span>{{ sensor.datetime|date('d-m-Y H:i:s') }}</span>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+
+		<div class="card">
+			<h2 class="card__title">Positions</h2>
+			<p>Label sensors with a position inside the house to easily recognize them inside the dashboard. Positions should first be named before they can be assigned to sensors. Please bear in mind that removing a position will also remove possible references set into the sensors.</p>
+
+			{{ form_start(positionForm) }}
+			{% for position in positionForm.positions %}
+				<div class="row row-no-padding">
+					<div class="col-sm-5">
+						{{ form_row(position.name) }}
+					</div>
+					<div class="col-sm-1">
+						{% if position.delete is defined %}
+							<label>&nbsp;</label><br>
+							<button type="submit" id="positions_positions_{{ loop.index0 }}_delete" name="positions[positions][{{ loop.index0 }}][delete]" class="btn btn-default btn-danger">
+								<i class="fa fa-remove"></i>
+								<span>Delete</span>
+							</button>
+							{% do position.delete.setRendered %}
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+
+			<div class="row row-no-padding">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<input class="btn btn-success" type="submit" value="Save" />
+						{{ form_end(positionForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<h2 class="card__title">Sensors</h2>
+			<p>The following sensors have sent readings to the CHIBB-system. The UUID and battery level are read-only fields.</p>
+
+			{{ form_start(sensorForm) }}
+			{% for sensor in sensorForm.sensors %}
+				<div class="row row-no-padding sensors">
+					<div class="col-lg-10">
+						<div class="col-sm-4">
+							{{ form_row(sensor.uuid) }}
+						</div>
+						<div class="col-sm-2">
+							{{ form_row(sensor.battery) }}
+						</div>
+						<div class="col-sm-4">
+							{{ form_row(sensor.position) }}
+						</div>
+						<div class="col-sm-2">
+							<label>&nbsp;</label><br>
+							<button type="submit" id="sensors_sensors_{{ loop.index0 }}_delete" name="sensors[sensors][{{ loop.index0 }}][delete]" class="btn btn-default btn-danger">
+								<i class="fa fa-remove"></i>
+								<span>Delete</span>
+							</button>
+							{% do sensor.delete.setRendered %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			{% do sensorForm.sensors.setRendered %}
+
+			<div class="row row-no-padding">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<input class="btn btn-success" type="submit" value="Save" />
+						{{ form_end(sensorForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

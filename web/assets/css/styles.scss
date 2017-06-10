@@ -1,0 +1,38 @@
+/**
+ * @section : Styles css
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+/*------------------------------------*\
+   VENDOR
+\*------------------------------------*/
+@import "vendor/bootstrap";
+@import "vendor/bourbon/bourbon";
+@import "vendor/font-awesome";
+@import "vendor/neat/neat";
+@import "vendor/bootstrap-datepicker.min.css";
+
+/*------------------------------------*\
+   BASE
+\*------------------------------------*/
+@import "base/variables";
+@import "base/css-reset-and-normalize";
+@import "base/mixins";
+@import "base/base";
+@import "base/scaffolding";
+@import "base/helpers";
+@import "base/buttons";
+@import "base/sidebar";
+
+/*------------------------------------*\
+   COMPONENTS
+\*------------------------------------*/
+@import "components/login-page";
+@import "components/form";
+@import "components/card";
+@import "components/alert";
+
+@import "components/home";
+@import "components/settings";
+@import "components/statistics";

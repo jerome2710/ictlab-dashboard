@@ -1,0 +1,25 @@
+{
+  "name": "gulp-frontend-tasks",
+  "version": "0.1.0",
+  "description": "A collection of useful Gulp tasks to automate your front-end workflow",
+  "author": "Iain van der Wiel <iain@e-sites.nl>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/e-sites/gulp-frontend-tasks.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-notify": "^2.0.1",
+    "gulp-plumber": "^0.6.6",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.2.2",
+    "gulp-tasker": "^0.2.1",
+    "require-dir": "^0.1.0",
+    "walk": "^2.3.9"
+  },
+  "scripts": {
+    "postinstall": "node web/assets/js/install-deps.js"
+  }
+}

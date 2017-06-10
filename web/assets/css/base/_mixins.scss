@@ -1,0 +1,65 @@
+/**
+ * @section : Bundles of mixins
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+@mixin card-shadow {
+	.cssfilters & {
+		&:before,
+		&:after {
+			@include filter(blur(5px));
+			content: '';
+			height: 20px;
+			background: rgba(black, .7);
+			width: calc(50% - 10px);
+			display: block;
+			position: absolute;
+			bottom: 0;
+			z-index: -1;
+		}
+
+		&:before {
+			@include transform(rotate(-1deg));
+			@include transform-origin(left bottom);
+			left: 10px;
+		}
+
+		&:after {
+			@include transform(rotate(1deg));
+			@include transform-origin(right bottom);
+			right: 10px;
+		}
+	}
+}
+
+@mixin action-anchor {
+	color: $color-dolphin;
+	font-weight: 800;
+}
+
+@mixin action-anchor-text {
+	overflow: hidden;
+	display: block;
+}
+
+@mixin card-medium-title {
+	font-family: $f-font-family-heading;
+	font-size: 18px;
+	font-weight: 800;
+	color: $color-panther;
+	display: block;
+
+	@media screen and (min-width: 414px) {
+		display: inline-block;
+	}
+}
+
+@mixin label {
+	padding-bottom: 3px;
+	display: inline-block;
+	color: $color-seal;
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: 500;
+}

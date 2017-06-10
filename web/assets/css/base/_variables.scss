@@ -1,0 +1,44 @@
+/**
+ * @section : Global variables
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+/*------------------------------------*\
+    COLORS
+\*------------------------------------*/
+$color-frog:				#83b817;
+$color-firefox:				#fd4300;
+$color-garfield:			#fda200;
+$color-panther:             #212121;
+$color-rhino:               #303030;
+$color-dolphin:             #6AA3D9;
+$color-mouse:				#dfdfdf;
+$color-wolf:          		#f4f4f4;
+$color-seal:                #7f7f7f;
+$color-text:                #494949;
+
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+$f-font-family-path:		'/assets/fonts/';
+$fa-font-path:				$f-font-family-path;
+$f-font-family:				'Roboto', Helvetica, Verdana, Arial, sans-serif;
+$f-font-family-heading:		$f-font-family;
+$f-size:					15px;
+
+/*------------------------------------*\
+    MEDIA QUERY BREAKPOINTS
+\*------------------------------------*/
+/* Breakpoints, like your shirt sizes */
+$bp-xs:						0;
+$bp-sm:                     576px;
+$bp-md:						768px;
+$bp-lg:						992px;
+$bp-xl:                     1200px;
+
+/* Max widths of the various breakpoints */
+$bp-max-xs:					$bp-sm - 1;
+$bp-max-sm:					$bp-md - 1;
+$bp-max-md:					$bp-lg - 1;
+$bp-max-lg:					$bp-xl - 1;

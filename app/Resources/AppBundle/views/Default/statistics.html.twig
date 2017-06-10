@@ -1,0 +1,113 @@
+{% extends ':layouts:base.html.twig' %}
+
+{% set page_title = 'Statistics' %}
+{% set page_class = 'statistics' %}
+
+{% block body %}
+	<div class="row statistics">
+
+		<div class="card">
+			<h2 class="card__title">Readings</h2>
+			<p>Choose a sensor and then a type.</p>
+
+			<div class="row statistics-form">
+				<form class="col-md-8 form form-horizontal">
+
+					<div class="form-group">
+						<div class="col-md-4">
+							<label class="sr-only" for="dateFrom">Date from</label>
+							<div class="input-group">
+								<div class="input-group-addon">Date from</div>
+								<input type="date" class="form-control datepicker js-statistics-dateFrom" id="dateFrom" value="{{ '-1 week'|date('d-m-Y') }}">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label class="sr-only" for="dateTo">Date to</label>
+							<div class="input-group">
+								<div class="input-group-addon">Date to</div>
+								<input type="date" class="form-control datepicker js-statistics-dateTo" id="dateTo" value="{{ 'now'|date('d-m-Y') }}">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="btn-group js-statistics-interval" data-toggle="buttons">
+								<label class="btn btn-default">
+									<input type="radio" name="interval" value="weekly">Weekly
+								</label>
+								<label class="btn btn-default active">
+									<input type="radio" name="interval" value="daily">Daily
+								</label>
+								<label class="btn btn-default">
+									<input type="radio" name="interval" value="hourly">Hourly
+								</label>
+							</div>
+						</div>
+						<div class="col-md-1">
+							<button data-sensor-count="0" type="submit" class="btn btn-primary js-statistics-addSensor">Add sensor</button>
+						</div>
+					</div>
+
+					<div class="sensor">
+						<div class="form-group">
+							<div class="col-md-5">
+								<label for="sensors[0][sensor]" class="sr-only">Sensor</label>
+								<select name="sensors[0][sensor]" id="sensors[0][sensor]" class="form-control js-statistics-sensor">
+									<option disabled="disabled" selected="selected">Choose a sensor</option>
+									{% for sensor in sensors %}
+										<option value="{{ sensor.uuid }}" data-types="{{ sensor.jsonSensorTypes }}">{{ sensor.name }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="col-md-5">
+								<label for="sensors[0][type]" class="sr-only">Type</label>
+								<select name="sensors[0][type]" id="sensors[0][type]" class="form-control js-statistics-types">
+									<option disabled="disabled" selected="selected">Choose a sensor</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+
+					<script id="js-statistics-addSensor-template" type="text/x-template">
+						<div class="sensor">
+							<div class="form-group">
+								<div class="col-md-5">
+									<label for="sensors[%index%][sensor]" class="sr-only">Sensor</label>
+									<select name="sensors[%index%][sensor]" id="sensors[%index%][sensor]" class="form-control js-statistics-sensor">
+										<option disabled="disabled" selected="selected">Choose a sensor</option>
+										{% for sensor in sensors %}
+											<option value="{{ sensor.uuid }}" data-types="{{ sensor.jsonSensorTypes }}">{{ sensor.name }}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="col-md-5">
+									<label for="sensors[%index%][type]" class="sr-only">Type</label>
+									<select name="sensors[%index%][type]" id="sensors[%index%][type]" class="form-control js-statistics-types">
+										<option disabled="disabled" selected="selected">Choose a sensor</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<button type="submit" class="btn btn-danger js-statistics-removeSensor">Remove sensor</button>
+								</div>
+							</div>
+						</div>
+					</script>
+
+
+					<div class="form-group">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-success disabled js-statistics-submit">Load</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="chart">
+				<canvas id="readingsChart" width="400" height="400"></canvas>
+				<div class="chart-overlay">
+					<p>Please add a chart by choosing a sensor & type above.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

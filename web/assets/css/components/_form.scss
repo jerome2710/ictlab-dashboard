@@ -1,0 +1,216 @@
+/**
+ * @section : Form styles
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+.default-form {
+	label {
+		@include label();
+		cursor: pointer;
+	}
+
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	input[type="tel"],
+	input[type="number"],
+	select,
+	textarea {
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		border-radius: 0;
+		font-size: 16px;
+		box-shadow: inset 1px 1px $color-mouse, inset -1px -1px $color-mouse;
+		border: none;
+		height: 38px;
+		line-height: 100%;
+		padding: 0 15px;
+		width: 100%;
+
+		&[readonly] {
+			background: rgba($color-mouse, 0.5);
+		}
+
+		&.parsley-error {
+			box-shadow: inset 2px 2px $color-firefox, inset -2px -2px $color-firefox;
+		}
+	}
+
+	textarea {
+		padding: 10px 15px;
+		line-height: 150%;
+		height: auto;
+	}
+
+	select {
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAPCAYAAAAVk7TYAAAABGdBTUEAALGPC/xhBQAAAIdJREFUOBG91MsNgCAMgGEbR2AEGITNxM0chBlYAamJiQ8eLVJ76envdysYY1yMcZmEBwDWOYSwKaUgWVbKQ8h772YEJMETQufApMArdMNGg0/ohY0Cc1AW+wqWoCLWC9agKsYFW1ATo4IUiIS1QCpExkogB8Ib7MFfqrWOuNlxT5Ag29P92uwWvlyvMrpnXwAAAABJRU5ErkJggg==');
+		background-size: 9px 5px;
+		background-repeat: no-repeat;
+		background-position: top 50% right 10px;
+		border-radius: 0;
+		padding-right: 25px;
+
+		@media screen and (min-width: $bp-lg) {
+			background-position: top 50% right 15px;
+			padding-right: 30px;
+		}
+	}
+
+	h4 {
+		font-size: 15px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.form-group {
+		@include clearfix();
+		clear: both;
+		margin-bottom: 15px;
+
+		&--has-delete {
+			input[type="text"],
+			input[type="email"],
+			input[type="password"],
+			input[type="tel"],
+			input[type="number"],
+			select,
+			textarea {
+				width: calc(100% - 50px);
+				float: right;
+			}
+
+			label {
+				width: 100%;
+			}
+		}
+
+		&__half {
+			@include media($bp-md) {
+				@include span-columns(6);
+				@include omega(2n);
+				clear: none;
+			}
+		}
+
+		&__third {
+			@include media($bp-md) {
+				@include span-columns(4);
+				@include omega(4n);
+				clear: none;
+			}
+		}
+
+		&__wrapper {
+			&:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+		}
+
+		&__input-aligned-button {
+			@media screen and (min-width: $bp-md) {
+				margin-top: 21px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+		}
+
+		&--submit {
+			margin-bottom: 0;
+		}
+	}
+
+	.form-delete-button {
+		width: 40px;
+		margin-left: 10px;
+		float: right;
+
+		.button {
+			font-weight: 400;
+			width: 100%;
+			padding: 10px 0;
+		}
+	}
+
+	/* Error styling */
+	.parsley-error-line {
+		font-weight: 400;
+		padding-top: 3px;
+		font-size: 13px;
+		color: $color-firefox;
+	}
+
+	.form-information {
+		font-size: 14px;
+	}
+
+	.fieldset-text {
+		position: relative;
+		padding: 20px 0;
+		font-weight: 800;
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: calc(50% - 1px);
+			left: 0;
+			width: 100%;
+			border-top: 2px solid $color-mouse;
+		}
+
+		&__value {
+			position: relative;
+			z-index: 2;
+			background: white;
+			padding-right: 5px;
+		}
+	}
+
+	.global-submit {
+		@include transition();
+		padding: 15px 0 5px 0;
+		width: 100%;
+
+		.form-group {
+			margin-bottom: 0;
+		}
+
+		.fixed-global-submit & {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			z-index: 10;
+			background: white;
+			border-top: 1px solid $color-mouse;
+
+			.main-content {
+				margin-bottom: 0;
+
+				@media screen and (max-width: $bp-max-md) {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	&__title {
+		font-size: 18px;
+		margin-top: 15px;
+		margin-bottom: 15px;
+
+		&--top {
+			margin-top: 0;
+		}
+	}
+
+	body:not(.fixed-global-submit) & .global-submit .main-content {
+		width: 100%;
+		margin-bottom: 0;
+	}
+}

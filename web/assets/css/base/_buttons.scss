@@ -1,0 +1,100 @@
+/**
+ * @section : Buttons
+ * @project : ICT Lab Dashboard
+ * @author  : Jerome Anker <0864155@hr.nl>
+ */
+
+.button {
+	@include transition(.2s);
+	padding: 12px 25px;
+	text-align: center;
+	font-size: 14px;
+	font-family: $f-font-family-heading;
+	text-transform: uppercase;
+	background-color: $color-wolf;
+	color: $color-panther;
+	border: none;
+	text-decoration: none;
+	font-weight: 800;
+	display: inline-block;
+	margin-bottom: 10px;
+
+	@media screen and (max-width: $bp-max-md) {
+		&.pull-right {
+			float: none;
+		}
+	}
+
+	&.pull-right {
+		&--top {
+			margin-top: 20px;
+
+			@media screen and (max-width: $bp-max-md) {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-wolf, 5%);
+	}
+
+	&--primary {
+		background-color: $color-frog;
+
+		&:hover,
+		&:focus {
+			background-color: darken($color-frog, 5%);
+		}
+	}
+
+	&--secondary {
+		background-color: $color-rhino;
+		color: white;
+
+		&:hover,
+		&:focus {
+			background-color: darken($color-rhino, 5%);
+		}
+	}
+
+	&--ghost {
+		background-color: white;
+		color: $color-panther;
+		box-shadow: inset 1px 1px $color-mouse, inset -1px -1px $color-mouse;
+	}
+
+	&--back {
+		margin-top: 20px;
+
+		svg {
+			display: inline-block;
+			fill: $color-panther;
+			margin-right: 8px;
+		}
+	}
+
+	&--block {
+		display: block;
+		width: 100%;
+	}
+
+	+ .button {
+		margin-left: 10px;
+
+		&.pull-right {
+			margin-left: 0;
+			margin-right: 10px;
+		}
+	}
+
+	.page-title + & {
+		margin-top: 40px;
+	}
+}
